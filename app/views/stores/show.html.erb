@@ -1,0 +1,9 @@
+<h1>Stores#show</h1>
+
+<%= @store.storename %>
+
+<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
+	<%= f.input :producttype %>
+	<br />
+	<%= f.submit 'Create', class: 'btn btn-primary' %>
+<% end %>
