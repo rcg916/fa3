@@ -1,8 +1,15 @@
-<h1>new</h1>
+<div class="col-10 offset-1 main">
 
-<%= simple_form_for @store do |f| %>
-	<%= f.input :storename %>
-	<%= f.input :address %>
+	<h1>Add a store to the database</h1>
 	<br />
-	<%= f.submit 'Create', class: 'btn btn-primary' %>
-<% end %>
+
+	<div>
+		<%= simple_form_for @store do |f| %>
+			<%= f.input :storename %>
+			<%= f.input :address %>
+			<br />
+			<%= f.submit 'Create Store', class: 'btn btn-primary' %>
+		<% end %>
+	</div>
+
+</div>

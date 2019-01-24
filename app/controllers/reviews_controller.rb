@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+	before_action :authenticate_user!, except: [:home, :faq]
+
   def index
   	@reviews = Review.all
   end
@@ -6,18 +8,14 @@ class ReviewsController < ApplicationController
   def home
   end
 
-  def new
-  	@review = Review.new
-  end
-
   def create
     @store = Store.find(params[:store_id])
-		# @user = current_user
-    @review = @store.reviews.create(review_params.merge(store_id: @store.id))
+		@user = current_user
+    @review = @store.reviews.create(review_params.merge(store_id: @store.id, user: @user))
     if @review.valid?
-    	redirect_to root_path, notice: 'Awesome! Your review was created successfully.'
+    	redirect_to store_reviews_path, notice: 'Awesome! Your review was created successfully.'
   	else
-  		redirect_to root_path, alert: 'Sorry, there was a problem with your review. Please try again.'
+  		redirect_to store_path(@store), alert: 'Sorry, there was a problem with your review. Please try again.'
   	end
   end
 
