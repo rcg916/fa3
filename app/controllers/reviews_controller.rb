@@ -14,6 +14,9 @@ class ReviewsController < ApplicationController
   def home
   end
 
+  def faq
+  end
+
   def create
     @store = Store.find(params[:store_id])
 		@user = current_user

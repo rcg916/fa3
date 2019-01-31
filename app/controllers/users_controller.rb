@@ -3,5 +3,6 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+  	@userlocation = Userlocation.new
   end
 end

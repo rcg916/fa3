@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   		resources :labelinfos, only: :create
   	end
   end
-  resources :users, only: :show
+  resources :users, only: :show do
+  	resources :userlocations, only: :create
+  end
   get '/reviews', to: 'reviews#index'
+  get '/pics', to: 'photos#index'
+  get '/faq', to: 'reviews#faq'
 end
