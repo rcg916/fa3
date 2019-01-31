@@ -1,8 +1,14 @@
 class ReviewsController < ApplicationController
-	before_action :authenticate_user!, except: [:home, :faq]
+	before_action :authenticate_user!, except: [:home]
 
   def index
   	@reviews = Review.all
+  end
+
+  def show
+  	@user = current_user
+		@review = Review.find(params[:id])
+    @labelinfo = Labelinfo.new
   end
 
   def home
@@ -22,6 +28,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:producttype)
+    params.require(:review).permit(:producttype, :storetype)
   end
 end

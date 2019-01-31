@@ -1,0 +1,60 @@
+<div class= "col-10 offset-1 main">
+
+	<h1>review show</h1>
+
+	<%= @review.storetype %><br />
+	<%= @review.producttype %><br />
+	<%= @review.store.storename %><br />
+	<%= @review.user.email %><br /><br />
+
+	<% if @review.labelinfos.present? %>
+		<%= @review.labelinfos.last.harvestdate %><br />
+		<%= @review.labelinfos.last.thcperc %><br />
+		<%= @review.labelinfos.last.cbdperc %><br />
+	<% end %>
+
+	<br /><br />
+
+	<!-- Show #Add Photo and# Add Label buttons if current user wrote review -->
+	<% if current_user && current_user == @review.user %>
+
+		<!-- Button trigger modal - label -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#labelModal">
+		  <% if @review.labelinfos.present? %>
+		  	Update your Label
+		  <% else %>
+		  	Add a Label
+		  <% end %>
+		</button>
+
+	<% end %>
+	<!-- -->
+
+	<br /><br />
+
+</div>
+
+<!-- Label Modal -->
+<div class="modal fade" id="labelModal" tabindex="-1" role="dialog" aria-labelledby="labelModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelModalLabel">Add a Label</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    	<%= simple_form_for @labelinfo, url: store_review_labelinfos_path(@review.store, @review) do |f| %>
+			<div class="modal-body">
+				<%= f.input :harvestdate, label: 'Harvest Date, as written on package' %>
+				<%= f.input :thcperc, label: 'THC %' %>
+				<%= f.input :cbdperc, label: 'CBD %' %>
+		  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit "Add a Label", class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

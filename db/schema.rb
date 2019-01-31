@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_050055) do
+ActiveRecord::Schema.define(version: 2019_01_31_044351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "labelinfos", force: :cascade do |t|
+    t.float "thcperc"
+    t.float "cbdperc"
+    t.string "harvestdate"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_01_24_050055) do
     t.string "producttype"
     t.integer "store_id"
     t.integer "user_id"
+    t.string "storetype"
   end
 
   create_table "stores", force: :cascade do |t|

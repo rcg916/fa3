@@ -1,9 +1,18 @@
-<h1>Stores#show</h1>
+<div class="col-10 offset-1 main">
 
-<%= @store.storename %>
+	<h1><%= @store.storename %></h1>
+	<%= @store.reviews.count %>
 
-<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
-	<%= f.input :producttype %>
+	<h3>Add a review for a product from <%= @store.storename %></h3>
 	<br />
-	<%= f.submit 'Create', class: 'btn btn-primary' %>
-<% end %>
+
+	<div>
+		<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
+			<%= f.input :producttype, as: :select, collection: Review::PRODUCTTYPE, label: 'What kind of product are you reviewing?' %>
+			<%= f.input :storetype, as: :select, collection: Review::STORETYPE, label: 'Storefront or Delivery Service?' %>
+			<br />
+			<%= f.submit 'Create Review', class: 'btn btn-primary' %>
+		<% end %>
+	</div>
+
+</div>

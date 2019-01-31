@@ -1,5 +1,8 @@
 <h1>Reviews#index</h1>
 
 <% @reviews.each do |review| %>
-	<%= review.inspect %>
+	<%= review.producttype %><br />
+	<%= review.user.email %><br />
+	<%= review.id %><br />
+	<%= review.store.storename %><br /><br />
 <% end %>
