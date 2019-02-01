@@ -14,6 +14,7 @@ class StoresController < ApplicationController
   def show
   	@store = Store.find(params[:id])
 		@review = Review.new
+    @favoritestore_exists = Favoritestore.where(store: @store, user: current_user) == [] ? false : true
   end
 
   def new

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'favoritestores/update'
   devise_for :users
   root 'reviews#home'
   resources :stores do
@@ -11,5 +12,6 @@ Rails.application.routes.draw do
   	resources :userlocations, only: :create
   end
   get '/reviews', to: 'reviews#index'
+  get '/pics', to: 'photos#index'
   get '/faq', to: 'reviews#faq'
 end

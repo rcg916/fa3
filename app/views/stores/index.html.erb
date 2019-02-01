@@ -1,8 +1,10 @@
 <div class="col-10 offset-1 main">
 
-	<h1>Stores#index</h1>
+	<h2>Stores near you</h2>
+	<br />
 
 	<% @nearbystores.each do |store| %>
+		<span class="badge badge-success"><%= store.reviews.last.inv_storetype %></span><br />
 		<%= link_to store.storename, store_path(store) %><br />
 		<%= store.address %><br />
 		<%= store.distance_from(@user.userlocations.last.to_coordinates).floor(1) %> miles away<br /><br />

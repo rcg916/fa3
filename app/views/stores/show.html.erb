@@ -1,5 +1,9 @@
 <div class="col-10 offset-1 main">
 
+	<%= @store.favoritestores.count %><br /><br />
+
+	<%= link_to favoritestore_text, favoritestores_update_path(store: @store), id: 'favoritestore_link', remote: true %>
+
 	<h1><%= @store.storename %></h1>
 	<%= @store.address %><br />
 	<%= @store.reviews.count %><br />

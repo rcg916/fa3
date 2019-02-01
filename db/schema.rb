@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_233707) do
+ActiveRecord::Schema.define(version: 2019_02_01_210342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favoritestores", force: :cascade do |t|
+    t.bigint "store_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_favoritestores_on_store_id"
+    t.index ["user_id"], name: "index_favoritestores_on_user_id"
+  end
 
   create_table "labelinfos", force: :cascade do |t|
     t.float "thcperc"
@@ -71,4 +80,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_233707) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favoritestores", "stores"
+  add_foreign_key "favoritestores", "users"
 end

@@ -6,20 +6,29 @@
 	<%= @user.email %><br />
 	<%= @user.reviews.count %><br /><br />
 
+	<h3>Favorite stores:</h3>
+	<% @user.favoritestores.each do |favoritestore| %>
+		<%= favoritestore.store.storename %><br />
+	<% end %>
+
+	<br /><br />
+
 	<!-- Show if current user is the user from this profile -->
 	<% if current_user && current_user == @user %>
-		<div>
-			<% if @user.userlocations.last.present? %>
-				<h5>Current User Location: <%= @user.userlocations.last.address %></h5>
-			<% end %>
-		</div>
-		<div>
-			<h4>Update your location:</h4>
-			<%= simple_form_for @userlocation, url: user_userlocations_path(current_user) do |f| %>
-			  <%= f.input :address, label: 'Address:' %>
-			  <br />
-			  <%= f.submit 'Update', class: 'btn btn-primary' %>
-			<% end %>
+		<div class="box">
+			<div>
+				<% if @user.userlocations.last.present? %>
+					<h5>Current User Location: <%= @user.userlocations.last.address %></h5>
+				<% end %>
+			</div>
+			<div>
+				<h4>Update your location:</h4>
+				<%= simple_form_for @userlocation, url: user_userlocations_path(current_user) do |f| %>
+				  <%= f.input :address, label: 'Address:' %>
+				  <br />
+				  <%= f.submit 'Update', class: 'btn btn-primary' %>
+				<% end %>
+			</div>
 		</div>
 	<% end %>
 	<!-- -->

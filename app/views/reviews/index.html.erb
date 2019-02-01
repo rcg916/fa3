@@ -1,10 +1,13 @@
 <div class="col-10 offset-1 main">
 
-	<h1>Reviews#index</h1>
+	<h3>Reviews from stores near you</h3>
+	<br />
 
 	<% @sortednearbyreviews.each do |review| %>
-		<%= review.inspect %>
-
+		<%= link_to review.storetype, store_review_path(store_id: review.store.id, id: review.id) %><br />
+		<%= review.producttype %><br />
+		<%= review.store.storename %><br />
+		<%= review.user.email %><br /><br />
 	<% end %>
 
 </div>

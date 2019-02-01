@@ -1,0 +1,15 @@
+<div class="col-10 offset-1 main">
+
+	<h3>photos index</h3>
+	<br />
+
+	<div>
+		<% @photos.each do |photo| %>
+			<%= image_tag((photo.picture.url), class: 'review_image_small') %><br />
+			<%= photo.caption %><br />
+			<%= photo.review.store.storename %>
+			<p>Upvote goes here</p><br />
+		<% end %>
+	</div>
+
+</div>

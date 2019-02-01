@@ -1,6 +1,17 @@
 <div class= "col-10 offset-1 main">
 
-	<h1>review show</h1>
+	<% if @review.user == current_user && @review.photos.present? && @review.labelinfos.present? %>
+		<span class="badge badge-success">Nice job! Your review is 100% complete.</span>
+	<% end %>
+	<br />
+
+	<div>
+		<% if @review.photos.present? %>
+			<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
+			<h5><%= @review.photos.last.caption %></h5>
+		<% end %>
+	</div>
+	<br />
 
 	<%= @review.storetype %><br />
 	<%= @review.producttype %><br />
@@ -8,17 +19,11 @@
 	<%= @review.user.email %><br /><br />
 
 	<% if @review.labelinfos.present? %>
-		<%= @review.labelinfos.last.harvestdate %><br />
-		<%= @review.labelinfos.last.thcperc %><br />
-		<%= @review.labelinfos.last.cbdperc %><br />
-	<% end %>
-
-	<br /><br />
-
-	<% if @review.photos.present? %>
-	<%= @review.photos.last.picture.url %>
-		<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
-		<h5><%= @review.photos.last.caption %></h5>
+		<div class="box">
+			<%= @review.labelinfos.last.harvestdate %><br />
+			<%= @review.labelinfos.last.thcperc %><br />
+			<%= @review.labelinfos.last.cbdperc %><br />
+		</div>
 	<% end %>
 
 	<br /><br />
