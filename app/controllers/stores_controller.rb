@@ -3,7 +3,12 @@ class StoresController < ApplicationController
   # before_action :must_be_admin, only: [:new, :create]
 
   def index
-  	@stores = Store.all
+  	@user = current_user
+    if @user.userlocations.last == nil
+      redirect_to user_path(@user), alert: 'Please set your location so we can show you reviews nearby.'
+    else
+      @nearbystores = Store.near(@user.userlocations.last.to_coordinates, 25, units: :mi)
+    end
   end
 
   def show

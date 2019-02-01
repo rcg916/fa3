@@ -1,8 +1,11 @@
-<h1>Reviews#index</h1>
+<div class="col-10 offset-1 main">
 
-<% @reviews.each do |review| %>
-	<%= review.producttype %><br />
-	<%= review.user.email %><br />
-	<%= review.id %><br />
-	<%= review.store.storename %><br /><br />
-<% end %>
+	<h1>Reviews#index</h1>
+
+	<% @sortednearbyreviews.each do |review| %>
+		<%= review.inspect %>
+
+	<% end %>
+
+</div>
+

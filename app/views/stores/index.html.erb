@@ -1,6 +1,11 @@
-<h1>Stores#index</h1>
+<div class="col-10 offset-1 main">
 
-<% @stores.each do |store| %>
-	<%= store.storename %><br />
-	<%= store.id %><br />
-<% end %>
+	<h1>Stores#index</h1>
+
+	<% @nearbystores.each do |store| %>
+		<%= link_to store.storename, store_path(store) %><br />
+		<%= store.address %><br />
+		<%= store.distance_from(@user.userlocations.last.to_coordinates).floor(1) %> miles away<br /><br />
+	<% end %>
+
+</div>

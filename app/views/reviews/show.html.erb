@@ -15,8 +15,25 @@
 
 	<br /><br />
 
-	<!-- Show #Add Photo and# Add Label buttons if current user wrote review -->
+	<% if @review.photos.present? %>
+	<%= @review.photos.last.picture.url %>
+		<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
+		<h5><%= @review.photos.last.caption %></h5>
+	<% end %>
+
+	<br /><br />
+
+	<!-- Show Add Photo and Add Label buttons if current user wrote review -->
 	<% if current_user && current_user == @review.user %>
+
+		<!-- Button trigger modal - photo -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#picModal">
+			<% if @review.photos.present? %>
+		  	Update your Photo
+		  <% else %>
+		  	Add a Photo
+		  <% end %>
+		</button>
 
 		<!-- Button trigger modal - label -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#labelModal">
@@ -33,6 +50,31 @@
 	<br /><br />
 
 </div>
+
+<!-- Picture Modal -->
+<div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="picModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="picModalLabel">Add a Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    	<%= simple_form_for @photo, url: store_review_photos_path(@review.store, @review) do |f| %>
+				<div class="modal-body">
+					<%= f.input :picture, label: 'Add a Photo' %>
+				  <%= f.hidden_field :caption, value: "#{@review.producttype} from #{@review.store.storename} (uploaded by #{@user.email} )" %>
+			  </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <%= f.submit "Add a Photo", class: 'btn btn-primary' %>
+	      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <!-- Label Modal -->
 <div class="modal fade" id="labelModal" tabindex="-1" role="dialog" aria-labelledby="labelModalLabel" aria-hidden="true">
