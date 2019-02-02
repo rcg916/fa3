@@ -44,6 +44,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:producttype, :storetype)
+    params.require(:review).permit(:producttype, :storetype, :title, :comment, :odorrating, :visualrating, :tasterating)
   end
 end

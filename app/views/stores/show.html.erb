@@ -13,8 +13,13 @@
 
 	<div>
 		<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
+			<%= f.input :title, label: 'Enter a title for your review' %>
 			<%= f.input :producttype, as: :select, collection: Review::PRODUCTTYPE, label: 'What kind of product are you reviewing?' %>
 			<%= f.input :storetype, as: :select, collection: Review::STORETYPE, label: 'Storefront or Delivery Service?' %>
+			<%= f.input :visualrating, label: 'How does it look?' %>
+			<%= f.input :tasterating, label: 'How does it taste?' %>
+			<%= f.input :odorrating, label: 'How does it smell?' %>
+			<%= f.input :comment, label: 'Tell us more about it' %>
 			<br />
 			<%= f.submit 'Create Review', class: 'btn btn-primary' %>
 		<% end %>
