@@ -1,0 +1,9 @@
+<div class="col-10 offset-1 main">
+
+	<%= link_to 'Back', :back %><br /><br />
+
+	<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
+
+	<%= link_to photoupvote_text, photoupvotes_update_path(photo: @review.photos.last), id: 'photoupvote_link', remote: true %><br /><br />
+
+</div>

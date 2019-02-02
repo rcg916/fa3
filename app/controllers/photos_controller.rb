@@ -5,6 +5,11 @@ class PhotosController < ApplicationController
 		@photos = Photo.all.order("created_at DESC")
 	end
 
+	def show
+		@review = Review.find(params[:review_id])
+		@photoupvote_exists = Photoupvote.where(photo: @review.photos.last, user: current_user) == [] ? false : true
+	end
+
 	def create
 		@review = Review.find(params[:review_id])
 		@photo = @review.photos.create(photo_params)

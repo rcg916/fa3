@@ -3,6 +3,10 @@
 	<h1>User Dashboard</h1>
 	<br />
 
+	<%= link_to "Follow", '#' %>
+
+	<br /><br />
+
 	<%= @user.email %><br />
 	<%= @user.reviews.count %><br /><br />
 
@@ -10,6 +14,10 @@
 	<% @user.favoritestores.each do |favoritestore| %>
 		<%= favoritestore.store.storename %><br />
 	<% end %>
+
+	<br /><br />
+
+	<%= @user.photoupvotes.count %>
 
 	<br /><br />
 

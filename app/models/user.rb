@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :userlocations, dependent: :destroy
   has_many :favoritestores, dependent: :destroy
+  has_many :photoupvotes, dependent: :destroy
  	
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_210342) do
+ActiveRecord::Schema.define(version: 2019_02_01_223452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_02_01_210342) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+  end
+
+  create_table "photoupvotes", force: :cascade do |t|
+    t.bigint "photo_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_photoupvotes_on_photo_id"
+    t.index ["user_id"], name: "index_photoupvotes_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -82,4 +91,6 @@ ActiveRecord::Schema.define(version: 2019_02_01_210342) do
 
   add_foreign_key "favoritestores", "stores"
   add_foreign_key "favoritestores", "users"
+  add_foreign_key "photoupvotes", "photos"
+  add_foreign_key "photoupvotes", "users"
 end

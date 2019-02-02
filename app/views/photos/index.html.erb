@@ -5,10 +5,10 @@
 
 	<div>
 		<% @photos.each do |photo| %>
-			<%= image_tag((photo.picture.url), class: 'review_image_small') %><br />
+			<%= link_to image_tag((photo.picture.url), class: 'review_image_small'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
 			<%= photo.caption %><br />
-			<%= photo.review.store.storename %>
-			<p>Upvote goes here</p><br />
+			<%= photo.review.store.storename %><br />
+			<%= photo.photoupvotes.count %><br /><br />
 		<% end %>
 	</div>
 
