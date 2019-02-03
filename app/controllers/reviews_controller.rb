@@ -34,6 +34,10 @@ class ReviewsController < ApplicationController
     @store = Store.find(params[:store_id])
 		@user = current_user
     @review = @store.reviews.create(review_params.merge(store_id: @store.id, user: @user))
+    ratingavg = ((@review.visualrating + @review.tasterating + @review.odorrating).to_f / 3).floor(2)
+    @review.update_attribute :ratingavg, ratingavg
+    straincapitalized = @review.strainname.titlecase
+    @review.update_attribute :strainname, straincapitalized
     if @review.valid?
     	redirect_to store_reviews_path, notice: 'Awesome! Your review was created successfully.'
   	else
@@ -44,6 +48,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:producttype, :storetype, :title, :comment, :odorrating, :visualrating, :tasterating)
+    params.require(:review).permit(:producttype, :storetype, :title, :comment, :odorrating, 
+      :visualrating, :tasterating, :straintype, :strainname)
   end
 end

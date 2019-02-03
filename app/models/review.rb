@@ -25,4 +25,16 @@ class Review < ApplicationRecord
 	def inv_storetype
 		STORETYPE.invert[self.storetype]
 	end
+
+	STRAINTYPE = {
+		'Sativa': 'sativa',
+		'Indica': 'indica',
+		'Hybrid': 'hybrid',
+		'Hybrid - Sativa dominant': 'hybridsat',
+		'Hybrid - Indica dominant': 'hybridind'
+	}
+
+	def inv_straintype
+		STRAINTYPE.invert[self.straintype]
+	end
 end

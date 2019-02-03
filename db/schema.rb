@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_02_053130) do
+ActiveRecord::Schema.define(version: 2019_02_02_235214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,9 @@ ActiveRecord::Schema.define(version: 2019_02_02_053130) do
     t.integer "visualrating"
     t.integer "odorrating"
     t.integer "tasterating"
+    t.float "ratingavg"
+    t.string "strainname"
+    t.string "straintype"
   end
 
   create_table "stores", force: :cascade do |t|

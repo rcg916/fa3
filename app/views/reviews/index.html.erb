@@ -6,10 +6,15 @@
 	<% @sortednearbyreviews.each do |review| %>
 		<%= link_to review.storetype, store_review_path(store_id: review.store.id, id: review.id) %><br />
 		<%= review.producttype %><br />
+		<%= review.inv_straintype %><br />
+		<%= review.strainname %><br />
 		<%= review.title %><br />
 		<%= review.visualrating %><br />
 		<%= review.tasterating %><br />
-		<%= review.odorrating %><br />
+		<%= review.odorrating %><br /><br />
+
+		<%= review.ratingavg %><br /><br />
+
 		<%= review.comment %><br />
 		<%= review.store.storename %><br />
 		<%= review.user.email %><br /><br />

@@ -13,9 +13,12 @@
 
 	<div>
 		<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
-			<%= f.input :title, label: 'Enter a title for your review' %>
-			<%= f.input :producttype, as: :select, collection: Review::PRODUCTTYPE, label: 'What kind of product are you reviewing?' %>
+			<%# f.input :producttype, as: :select, collection: Review::PRODUCTTYPE, label: 'What kind of product are you reviewing?' %>
+			<%= f.hidden_field :producttype, value: "flower" %>
 			<%= f.input :storetype, as: :select, collection: Review::STORETYPE, label: 'Storefront or Delivery Service?' %>
+			<%= f.input :title, label: 'Enter a title for your review' %>
+			<%= f.input :straintype, as: :select, collection: Review::STRAINTYPE, label: 'What type of strain was it?' %>
+			<%= f.input :strainname, label: 'What was the strain called?' %>
 			<%= f.input :visualrating, label: 'How does it look?' %>
 			<%= f.input :tasterating, label: 'How does it taste?' %>
 			<%= f.input :odorrating, label: 'How does it smell?' %>

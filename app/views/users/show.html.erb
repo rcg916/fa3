@@ -13,6 +13,7 @@
 	<h3>Favorite stores:</h3>
 	<% @user.favoritestores.each do |favoritestore| %>
 		<%= favoritestore.store.storename %><br />
+		<%= favoritestore.store.reviews.count %>
 	<% end %>
 
 	<br /><br />
