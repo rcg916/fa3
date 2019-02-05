@@ -1,46 +1,59 @@
 <div class="col-10 offset-1 main">
-
-	<h1>User Dashboard</h1>
+	<h5>User Dashboard</h5>
 	<br />
+	
+		<h3><%= @user.username %></h3>
 
-	<%= link_to "Follow", '#' %>
+		<% if current_user && current_user == @user %>
+			<em><%= @user.email %></em><br />
+		<% end %>
 
-	<br /><br />
+		<% if current_user && current_user.admin? %>
+			<span class="badge badge-secondary">ADMIN</span><br />
+		<% end %>
+		
+		<br />
 
-	<%= @user.email %><br />
-	<%= @user.username %><br />
-	<%= @user.reviews.count %><br /><br />
+		<%# link_to "Follow", '#' %>
 
-	<h3>Favorite stores:</h3>
-	<% @user.favoritestores.each do |favoritestore| %>
-		<%= favoritestore.store.storename %><br />
-		<%= favoritestore.store.reviews.count %>
-	<% end %>
+		Reviews written: <%= @user.reviews.count %><br />
+		<% @user.reviews.each do |review| %>
+			<%= link_to review.title, store_review_path(review.store, review) %><br />
+		<% end %>
 
-	<br /><br />
+		<br />
 
-	<%= @user.photoupvotes.count %>
+		Favorite stores: <%= @user.favoritestores.count %><br />
+		<% @user.favoritestores.each do |favoritestore| %>
+			<%= link_to favoritestore.store.storename, store_path(favoritestore.store) %><br />
+		<% end %>
 
-	<br /><br />
+		<br />
 
-	<!-- Show if current user is the user from this profile -->
-	<% if current_user && current_user == @user %>
-		<div class="box">
-			<div>
-				<% if @user.userlocations.last.present? %>
-					<h5>Current User Location: <%= @user.userlocations.last.address %></h5>
-				<% end %>
-			</div>
-			<div>
+		Times your photos have been UpVoted: <%= @user.photoupvotes.count %>
+
+		<br /><br />
+
+		<!-- Show if current user is the user from this profile -->
+		<% if current_user && current_user == @user %>
+			<div class="box">
 				<h4>Update your location:</h4>
-				<%= simple_form_for @userlocation, url: user_userlocations_path(current_user) do |f| %>
-				  <%= f.input :address, label: 'Address:' %>
-				  <br />
-				  <%= f.submit 'Update', class: 'btn btn-primary' %>
-				<% end %>
+				<br />
+				<div>
+					<%= simple_form_for @userlocation, url: user_userlocations_path(current_user) do |f| %>
+					  <%= f.input :address, label: 'Address:' %>
+					  <br />
+					  <%= f.submit 'Update Location', class: 'btn btn-primary' %>
+					<% end %>
+				</div>
+				<br />
+				<div>
+					<% if @user.userlocations.last.present? %>
+						<p><small><strong>Current User Location:</strong> <%= @user.userlocations.last.address %></small></p>
+					<% end %>
+				</div>
 			</div>
-		</div>
-	<% end %>
-	<!-- -->
+		<% end %>
+		<!-- -->
 
 </div>

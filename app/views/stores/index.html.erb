@@ -9,7 +9,8 @@
 		<% end %>
 		<%= link_to store.storename, store_path(store) %><br />
 		<%= store.address %><br />
-		<%= store.distance_from(@user.userlocations.last.to_coordinates).floor(1) %> miles away<br /><br />
+		<%= store.distance_from(@user.userlocations.last.to_coordinates).floor(1) %> miles away<br />
+		<%= store.reviews.count %> reviews<br /><br />
 	<% end %>
 
 </div>

@@ -1,16 +1,15 @@
 <div class="col-10 offset-1 main">
 
-	<h3>photos index</h3>
-	<br />
+	<h3>Pic Stream</h3>
+	Click the pic to view full-size and UpVote!
+	<br /><br />
 
 	<div>
 		<% @photos.sort_by{ |t| [-t.photoupvotes.count, t.created_at] }.each do |photo| %>
 			<%= link_to image_tag((photo.picture.url), class: 'review_image_small'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
-			<%= photo.caption %><br />
+			<small><%= photo.caption %></small><br />
 			<%= link_to photo.review.title, store_review_path(store_id: photo.review.store.id, id: photo.review.id) %><br />
-			<%= photo.review.producttype %><br />
-			<%= photo.review.store.storename %><br />
-			<%= photo.photoupvotes.count %><br /><br />
+			UpVotes: <%= photo.photoupvotes.count %><br /><br />
 		<% end %>
 
 	</div>

@@ -19,6 +19,7 @@
 	<%= @review.visualrating %><br />
 	<%= @review.tasterating %><br />
 	<%= @review.odorrating %><br />
+	<%= @review.potencyrating %><br />
 	<%= @review.comment %><br />
 	<%= @review.store.storename %><br />
 	<%= @review.user.email %><br /><br />
@@ -74,7 +75,7 @@
     	<%= simple_form_for @photo, url: store_review_photos_path(@review.store, @review) do |f| %>
 				<div class="modal-body">
 					<%= f.input :picture, label: 'Add a Photo' %>
-				  <%= f.hidden_field :caption, value: "#{@review.strainname} from #{@review.store.storename} (uploaded by #{@user.email} )" %>
+				  <%= f.hidden_field :caption, value: "#{@review.strainname} from #{@review.store.storename} (by #{@user.username} )" %>
 			  </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

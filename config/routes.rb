@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :users, only: :show do
   	resources :userlocations, only: :create
   end
+  namespace :admin do
+    resources :dashboard, only: :index
+  end
   get '/reviews', to: 'reviews#index'
   get '/pics', to: 'photos#index'
   get '/faq', to: 'reviews#faq'

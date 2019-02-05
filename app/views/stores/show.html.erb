@@ -6,9 +6,16 @@
 
 	<h1><%= @store.storename %></h1>
 	<%= @store.address %><br />
-	<%= @store.reviews.count %><br />
+	<%= @store.reviews.count %><br /><br />
 
-	<h3>Add a review for a product from <%= @store.storename %></h3>
+	<%# .limit(5) between order and each once there are more reviews per store %>
+	<% @store.reviews.order("created_at DESC").each do |review| %>
+		<%= link_to review.title, store_review_path(@store, review) %><br />
+	<% end %>
+
+	<br /><br />
+
+	<h3>Add a review for a strain from <%= @store.storename %></h3>
 	<br />
 
 	<div>
@@ -22,7 +29,8 @@
 			<%= f.input :visualrating, label: 'How does it look?' %>
 			<%= f.input :tasterating, label: 'How does it taste?' %>
 			<%= f.input :odorrating, label: 'How does it smell?' %>
-			<%= f.input :comment, label: 'Tell us more about it' %>
+			<%= f.input :potencyrating, label: 'How was the potency?' %>
+			<%= f.input :comment, label: 'Tell us more about it.' %>
 			<br />
 			<%= f.submit 'Create Review', class: 'btn btn-primary' %>
 		<% end %>
