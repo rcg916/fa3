@@ -7,7 +7,7 @@
 
 	<div>
 		<% if @review.photos.present? %>
-			<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
+			<%= link_to image_tag((@review.photos.last.picture.url), class: 'review_image_small'), store_review_photo_path(@review.photos.last, @review, @review.user) %><br />
 			<h5><%= @review.photos.last.caption %></h5>
 		<% end %>
 	</div>
@@ -74,7 +74,7 @@
     	<%= simple_form_for @photo, url: store_review_photos_path(@review.store, @review) do |f| %>
 				<div class="modal-body">
 					<%= f.input :picture, label: 'Add a Photo' %>
-				  <%= f.hidden_field :caption, value: "#{@review.producttype} from #{@review.store.storename} (uploaded by #{@user.email} )" %>
+				  <%= f.hidden_field :caption, value: "#{@review.strainname} from #{@review.store.storename} (uploaded by #{@user.email} )" %>
 			  </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

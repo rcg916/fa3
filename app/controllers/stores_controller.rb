@@ -1,6 +1,5 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!
-  # before_action :must_be_admin, only: [:new, :create]
 
   def index
   	@user = current_user
@@ -18,7 +17,11 @@ class StoresController < ApplicationController
   end
 
   def new
-  	@store = Store.new
+    if current_user && current_user.admin?
+  	 @store = Store.new
+    else
+      redirect_to stores_path, alert: 'Sorry, you must have admin access to view that page.'
+    end
   end
 
   def create

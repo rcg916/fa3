@@ -4,7 +4,7 @@
 	<br />
 
 	<div>
-		<% @photos.each do |photo| %>
+		<% @photos.sort_by{ |t| [-t.photoupvotes.count, t.created_at] }.each do |photo| %>
 			<%= link_to image_tag((photo.picture.url), class: 'review_image_small'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
 			<%= photo.caption %><br />
 			<%= link_to photo.review.title, store_review_path(store_id: photo.review.store.id, id: photo.review.id) %><br />
@@ -12,6 +12,7 @@
 			<%= photo.review.store.storename %><br />
 			<%= photo.photoupvotes.count %><br /><br />
 		<% end %>
+
 	</div>
 
 </div>

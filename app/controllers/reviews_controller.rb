@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
     ratingavg = ((@review.visualrating + @review.tasterating + @review.odorrating).to_f / 3).floor(2)
     @review.update_attribute :ratingavg, ratingavg
     straincapitalized = @review.strainname.titlecase
-    @review.update_attribute :strainname, straincapitalized
+    @review.update_attribute :strainname, straincapitalized 
     if @review.valid?
     	redirect_to store_reviews_path, notice: 'Awesome! Your review was created successfully.'
   	else
