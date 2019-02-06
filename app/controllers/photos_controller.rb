@@ -10,6 +10,15 @@ class PhotosController < ApplicationController
 		@photoupvote_exists = Photoupvote.where(photo: @review.photos.last, user: current_user) == [] ? false : true
 	end
 
+	def destroy
+	  @review = Review.find(params[:id])
+	  if @review.user != current_user
+	    return render plain: 'Not Allowed', status: :forbidden
+	  end
+	  @review.photos.destroy_all
+	  redirect_to store_review_path(@review), notice: 'Your photo has been deleted.'
+	end
+
 	def create
 		@review = Review.find(params[:review_id])
 		@photo = @review.photos.create(photo_params)

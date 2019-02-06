@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :stores do
   	resources :reviews do
   		resources :labelinfos, only: :create
-      resources :photos, only: [:create, :show]
+      resources :photos, only: [:create, :show, :destroy]
   	end
   end
   resources :users, only: :show do

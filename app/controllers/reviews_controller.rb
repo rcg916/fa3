@@ -24,6 +24,15 @@ class ReviewsController < ApplicationController
     @photo = Photo.new
   end
 
+  def destroy
+    @review = Review.find(params[:id])
+    if @review.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end
+    @review.destroy
+    redirect_to stores_path, notice: 'Your review has successfully been deleted.'
+  end
+
   def home
   end
 
