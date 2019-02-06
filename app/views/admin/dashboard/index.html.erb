@@ -3,6 +3,11 @@
 	<h3>Admin Dashboard</h3>
 	<br />
 
-	<%= @user.inspect %>
+	<p>Hello, <%= @user.username %></p>
+	<br />
+
+	<%= link_to 'Users', admin_users_path %><br />
+	<%= link_to 'Stores', admin_stores_path %><br />
+	<%= link_to 'Reviews', admin_reviews_path %><br />
 
 </div>

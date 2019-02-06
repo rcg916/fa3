@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   get '/reviews', to: 'reviews#index'
   get '/pics', to: 'photos#index'
   get '/faq', to: 'reviews#faq'
+  get '/admin', to: 'admin/dashboard#index'
+  get '/admin/users', to: 'admin/dashboard#users'
+  get '/admin/stores', to: 'admin/dashboard#stores'
+  get '/admin/reviews', to: 'admin/dashboard#reviews'
 end

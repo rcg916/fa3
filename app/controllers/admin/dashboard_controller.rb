@@ -6,6 +6,18 @@ class Admin::DashboardController < ApplicationController
 	  	@user = current_user
 	end
 
+	def users
+		@users = User.all
+	end
+
+	def stores
+		@stores = Store.all
+	end
+
+	def reviews
+		@reviews = Review.all
+	end
+
 	private
 
 	def must_be_admin
