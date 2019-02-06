@@ -3,6 +3,10 @@
 	<% if @review.user == current_user && @review.photos.present? && @review.labelinfos.present? %>
 		<span class="badge badge-success">Nice job! Your review is 100% complete.</span>
 	<% end %>
+
+	<% if @review.user != current_user %>
+		<%= link_to 'High Five!', '#' %>
+	<% end %>
 	<br />
 
 	<div>
