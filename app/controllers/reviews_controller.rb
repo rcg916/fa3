@@ -22,6 +22,7 @@ class ReviewsController < ApplicationController
 		@review = Review.find(params[:id])
     @labelinfo = Labelinfo.new
     @photo = Photo.new
+    @reviewhighfive_exists = Reviewhighfive.where(review: @review, user: current_user) == [] ? false : true
   end
 
   def destroy

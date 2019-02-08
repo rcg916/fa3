@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_221807) do
+ActiveRecord::Schema.define(version: 2019_02_08_010236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 2019_02_05_221807) do
     t.datetime "updated_at", null: false
     t.index ["photo_id"], name: "index_photoupvotes_on_photo_id"
     t.index ["user_id"], name: "index_photoupvotes_on_user_id"
+  end
+
+  create_table "reviewhighfives", force: :cascade do |t|
+    t.bigint "review_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_reviewhighfives_on_review_id"
+    t.index ["user_id"], name: "index_reviewhighfives_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -105,4 +114,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_221807) do
   add_foreign_key "favoritestores", "users"
   add_foreign_key "photoupvotes", "photos"
   add_foreign_key "photoupvotes", "users"
+  add_foreign_key "reviewhighfives", "reviews"
+  add_foreign_key "reviewhighfives", "users"
 end

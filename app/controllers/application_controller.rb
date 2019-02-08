@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
 		return @photoupvote_exists ? "Remove UpVote" : "UpVote"
 	end
 
+	def reviewhighfive_text
+		return @reviewhighfive_exists ? "Remove High Five" : "High Five!"
+	end
+
 	helper_method :favoritestore_text
 	helper_method :photoupvote_text
+	helper_method :reviewhighfive_text
 end

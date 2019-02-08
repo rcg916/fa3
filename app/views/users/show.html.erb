@@ -14,6 +14,18 @@
 		
 		<br />
 
+		High fives given: <%= @user.reviewhighfives.count %>
+		<br /> 
+
+		<% @totalhighfivesreceived = 0 %>
+		<% @user.reviews.each do |review| %>
+			<% @totalhighfivesreceived += review.reviewhighfives.count %><br />
+		<% end %>
+
+		High fives received: <%= @totalhighfivesreceived %>
+
+		<br /><br />
+
 		<%# link_to "Follow", '#' %>
 
 		Reviews written: <%= @user.reviews.count %><br />

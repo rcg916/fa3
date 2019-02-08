@@ -5,7 +5,7 @@
 	<% end %>
 
 	<% if @review.user != current_user %>
-		<%= link_to 'High Five!', '#' %>
+		<%= link_to reviewhighfive_text, reviewhighfives_update_path(review: @review), id: 'reviewhighfive_link', remote: true %>
 	<% end %>
 	<br />
 
@@ -16,6 +16,10 @@
 		<% end %>
 	</div>
 	<br />
+
+	<%= @review.reviewhighfives.count %>
+
+	<br /><br />
 
 	<%= @review.storetype %><br />
 	<%= @review.producttype %><br />

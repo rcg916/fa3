@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reviewhighfives/update'
   get 'photoupvotes/update'
   get 'favoritestores/update'
   devise_for :users

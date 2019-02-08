@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :userlocations, dependent: :destroy
   has_many :favoritestores, dependent: :destroy
   has_many :photoupvotes, dependent: :destroy
+  has_many :reviewhighfives, dependent: :destroy
 
   def send_new_user_email
   	GreetingMailer.user_signed_up(self).deliver_now

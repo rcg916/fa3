@@ -6,6 +6,7 @@ class Review < ApplicationRecord
 	belongs_to :user
 	has_many :labelinfos, dependent: :destroy
 	has_many :photos, dependent: :destroy
+	has_many :reviewhighfives, dependent: :destroy
 
 	PRODUCTTYPE = {
 		'Flower': 'flower',
