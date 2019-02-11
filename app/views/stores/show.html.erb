@@ -1,10 +1,12 @@
 <div class="col-10 offset-1 main">
 
-	<%= link_to favoritestore_text, favoritestores_update_path(store: @store), id: 'favoritestore_link', remote: true, class: 'btn btn-primary' %> &nbsp; <%= @store.favoritestores.count %><br /><br />
+	<%= link_to favoritestore_text, favoritestores_update_path(store: @store), id: 'favoritestore_link', remote: true, class: 'btn btn-primary' %> &nbsp; Favorited: <%= @store.favoritestores.count %><br /><br />
 
 	<h2><%= @store.storename %></h2>
-	<%= @store.address %><br />
-	<%= @store.reviews.count %><br /><br />
+	<%= @store.address %><br /><br />
+
+
+	Reviews from this dispensary: <%= @store.reviews.count %><br />
 
 	<%# .limit(5) between order and each once there are more reviews per store %>
 	<% @store.reviews.order("created_at DESC").each do |review| %>
@@ -12,6 +14,10 @@
 	<% end %>
 
 	<br /><br />
+
+	<% if @store.reviews.present? && @store.reviews.last.storetype == 'delivery' %>
+		<small><em>Locations for Delivery Services are approximate.</em></small><br />
+	<% end %>
 
 	<!-- Display map if coordinates are present -->
 
@@ -70,9 +76,17 @@
 				<%= f.input :quicknessrating, as: :range, label: 'Comes on quick or Creeper?' %>
 				<small>Comes on quick <span class="float-right">Takes a while</span></small>
 				</div>
+				<div class="box">
+				<%= f.input :headbodyrating, as: :range, label: 'Head or Body?' %>
+				<small>Head <span class="float-right">Body</span></small>
+				</div>
+				<div class="box">
+				<%= f.input :daynightrating, as: :range, label: 'Day or Night?' %>
+				<small>Day <span class="float-right">Night</span></small>
+				</div>
 				<%= f.input :comment, label: 'Tell us more about it.' %>
 				<br />
-				<%= f.submit 'Create Review', class: 'btn btn-primary' %>
+				<%= f.submit 'Create Review', class: 'btn btn-primary', data: {confirm: 'Are you sure you want to create this review?'} %>
 			<% end %>
 		</div>
 

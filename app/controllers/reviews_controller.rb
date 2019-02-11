@@ -60,6 +60,6 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:producttype, :storetype, :title, :comment, :odorrating, 
       :visualrating, :tasterating, :potencyrating, :straintype, :strainname, :happinessrating, 
-      :clarityrating, :quicknessrating)
+      :clarityrating, :quicknessrating, :headbodyrating, :daynightrating)
   end
 end

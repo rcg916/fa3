@@ -8,10 +8,16 @@ class ApplicationController < ActionController::Base
 	 devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
 	 devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
 	 devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+	 devise_parameter_sanitizer.permit(:sign_up, keys: [:ageconfirmation])
+	 devise_parameter_sanitizer.permit(:sign_in, keys: [:ageconfirmation])
+	 devise_parameter_sanitizer.permit(:account_update, keys: [:ageconfirmation])
+	 devise_parameter_sanitizer.permit(:sign_up, keys: [:terms])
+	 devise_parameter_sanitizer.permit(:sign_in, keys: [:terms])
+	 devise_parameter_sanitizer.permit(:account_update, keys: [:terms])
 	end
 
 	def favoritestore_text
-		return @favoritestore_exists ? "UnFavorite" : "Favorite"
+		return @favoritestore_exists ? "Remove Favorite" : "Favorite"
 	end
 
 	def photoupvote_text

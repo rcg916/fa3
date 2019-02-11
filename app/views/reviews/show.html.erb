@@ -31,9 +31,11 @@
 	<%= @review.happinessrating %><br />
 	<%= @review.clarityrating %><br />
 	<%= @review.quicknessrating %><br />
+	<%= @review.headbodyrating %><br />
+	<%= @review.daynightrating %><br />
 	<%= @review.comment %><br />
 	<%= @review.store.storename %><br />
-	<%= @review.user.email %><br /><br />
+	<%= @review.user.username %><br /><br />
 
 	<% if @review.labelinfos.present? %>
 		<div class="box">

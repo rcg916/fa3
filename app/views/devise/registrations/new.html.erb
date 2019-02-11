@@ -22,6 +22,9 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+      <br />
+      <%= f.input :ageconfirmation, as: :boolean, required: true, label: 'I confirm that I am at least 18 years of age' %>
+      <%= f.input :terms, as: :boolean, required: true, label: 'I accept Terms and Conditions' %>
     </div>
 
     <br />

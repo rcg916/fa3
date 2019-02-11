@@ -13,11 +13,13 @@
 		<%= store.reviews.count %> reviews
 
 		<!-- average rating for each store -->
-		<% @totalrating = 0 %>
-		<% store.reviews.each do |review| %>
-			<% @totalrating += review.ratingavg %>
+		<% if store.reviews.present? %>
+			<% @totalrating = 0 %>
+			<% store.reviews.each do |review| %>
+				<% @totalrating += review.ratingavg %>
+			<% end %>
+			<em>(<%= (@totalrating / store.reviews.count).floor(2) %>)</em>
 		<% end %>
-		<em>(<%= (@totalrating / store.reviews.count).floor(2) %>)</em>
 
 	<% end %>
 

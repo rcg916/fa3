@@ -6,6 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :ageconfirmation, acceptance: true
+  validates :terms, acceptance: true
+
   has_many :reviews
   has_many :userlocations, dependent: :destroy
   has_many :favoritestores, dependent: :destroy

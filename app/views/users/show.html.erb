@@ -1,6 +1,8 @@
 <div class="col-10 offset-1 main">
 	<h5>User Dashboard</h5>
 	<br />
+
+		<%# link_to "Follow", '#' %>
 	
 		<h3><%= @user.username %></h3>
 
@@ -17,6 +19,9 @@
 		High fives given: <%= @user.reviewhighfives.count %>
 		<br /><br />
 
+		Photo UpVotes given: <%= @user.photoupvotes.count %>
+		<br /><br />
+
 		<% @totalhighfivesreceived = 0 %>
 		<% @user.reviews.each do |review| %>
 			<% @totalhighfivesreceived += review.reviewhighfives.count %>
@@ -26,7 +31,16 @@
 
 		<br /><br />
 
-		<%# link_to "Follow", '#' %>
+		<% @totalphotoupvotesreceived = 0 %>
+		<% @user.reviews.each do |review| %>
+			<% if review.photos.present? %>
+				<% @totalphotoupvotesreceived += review.photos.last.photoupvotes.count %>
+			<% end %>
+		<% end %>
+
+		Photo UpVotes received: <%= @totalphotoupvotesreceived %>
+
+		<br /><br />
 
 		Reviews written: <%= @user.reviews.count %><br />
 		<% @user.reviews.each do |review| %>
@@ -38,11 +52,7 @@
 		Favorite stores: <%= @user.favoritestores.count %><br />
 		<% @user.favoritestores.each do |favoritestore| %>
 			<%= link_to favoritestore.store.storename, store_path(favoritestore.store) %><br />
-		<% end %>
-
-		<br />
-
-		Times your photos have been UpVoted: <%= @user.photoupvotes.count %>
+		<% end %>		
 
 		<br /><br />
 
