@@ -1,5 +1,14 @@
-stores<br />
+<div class="col-10 offset-1 main">
 
-<% @stores.each do |store| %>
-	<%= store.storename %><br />
-<% end %>
+	<% if current_user && current_user.admin? %>
+
+		<h2>stores</h2>
+
+		<% @stores.each do |store| %>
+			<%= store.storename %><br />
+			<%= store.address %><br /><br />
+		<% end %>
+
+	<% end %>
+
+</div>

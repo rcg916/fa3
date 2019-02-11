@@ -1,10 +1,8 @@
 <div class="col-10 offset-1 main">
 
-	<%= @store.favoritestores.count %><br /><br />
+	<%= link_to favoritestore_text, favoritestores_update_path(store: @store), id: 'favoritestore_link', remote: true, class: 'btn btn-primary' %> &nbsp; <%= @store.favoritestores.count %><br /><br />
 
-	<%= link_to favoritestore_text, favoritestores_update_path(store: @store), id: 'favoritestore_link', remote: true %>
-
-	<h1><%= @store.storename %></h1>
+	<h2><%= @store.storename %></h2>
 	<%= @store.address %><br />
 	<%= @store.reviews.count %><br /><br />
 
@@ -46,25 +44,38 @@
 
 	<br /><br />
 
-	<h3>Add a review for a strain from <%= @store.storename %></h3>
-	<br />
+	<div class="box">
 
-	<div>
-		<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
-			<%# f.input :producttype, as: :select, collection: Review::PRODUCTTYPE, label: 'What kind of product are you reviewing?' %>
-			<%= f.hidden_field :producttype, value: "flower" %>
-			<%= f.input :storetype, as: :select, collection: Review::STORETYPE, label: 'Storefront or Delivery Service?' %>
-			<%= f.input :title, label: 'Enter a title for your review' %>
-			<%= f.input :straintype, as: :select, collection: Review::STRAINTYPE, label: 'What type of strain was it?' %>
-			<%= f.input :strainname, label: 'What was the strain called?' %>
-			<%= f.input :visualrating, label: 'How does it look?' %>
-			<%= f.input :tasterating, label: 'How does it taste?' %>
-			<%= f.input :odorrating, label: 'How does it smell?' %>
-			<%= f.input :potencyrating, label: 'How was the potency?' %>
-			<%= f.input :comment, label: 'Tell us more about it.' %>
-			<br />
-			<%= f.submit 'Create Review', class: 'btn btn-primary' %>
-		<% end %>
+		<h3>Add a review for a strain from <%= @store.storename %></h3>
+		<br />
+
+		<div>
+			<%= simple_form_for @review, url: store_reviews_path(@store) do |f| %>
+				<%# f.input :producttype, as: :select, collection: Review::PRODUCTTYPE, label: 'What kind of product are you reviewing?' %>
+				<%= f.hidden_field :producttype, value: "flower" %>
+				<%= f.input :storetype, as: :select, collection: Review::STORETYPE, label: 'Storefront or Delivery Service?' %>
+				<%= f.input :title, label: 'Enter a title for your review' %>
+				<%= f.input :straintype, as: :select, collection: Review::STRAINTYPE, label: 'What type of strain was it?' %>
+				<%= f.input :strainname, label: 'What was the strain called?' %>
+				<%= f.input :visualrating, label: 'How does it look?' %>
+				<%= f.input :tasterating, label: 'How does it taste?' %>
+				<%= f.input :odorrating, label: 'How does it smell?' %>
+				<%= f.input :potencyrating, label: 'How was the potency?' %>
+				<%= f.input :happinessrating, label: 'How happy are you with the purchase?' %>
+				<div class="box">
+				<%= f.input :clarityrating, as: :range, label: 'Clear or Heavy?' %>
+				<small>Clear <span class="float-right">Heavy</span></small>
+				</div>
+				<div class="box">
+				<%= f.input :quicknessrating, as: :range, label: 'Comes on quick or Creeper?' %>
+				<small>Comes on quick <span class="float-right">Takes a while</span></small>
+				</div>
+				<%= f.input :comment, label: 'Tell us more about it.' %>
+				<br />
+				<%= f.submit 'Create Review', class: 'btn btn-primary' %>
+			<% end %>
+		</div>
+
 	</div>
 
 </div>

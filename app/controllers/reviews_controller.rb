@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
     @store = Store.find(params[:store_id])
 		@user = current_user
     @review = @store.reviews.create(review_params.merge(store_id: @store.id, user: @user))
-    ratingavg = ((@review.visualrating + @review.tasterating + @review.odorrating + @review.potencyrating).to_f / 4).floor(2)
+    ratingavg = ((@review.visualrating + @review.tasterating + @review.odorrating + @review.potencyrating + @review.happinessrating).to_f / 5).floor(2)
     @review.update_attribute :ratingavg, ratingavg
     straincapitalized = @review.strainname.titlecase
     @review.update_attribute :strainname, straincapitalized 
@@ -59,6 +59,7 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:producttype, :storetype, :title, :comment, :odorrating, 
-      :visualrating, :tasterating, :potencyrating, :straintype, :strainname)
+      :visualrating, :tasterating, :potencyrating, :straintype, :strainname, :happinessrating, 
+      :clarityrating, :quicknessrating)
   end
 end

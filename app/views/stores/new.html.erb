@@ -1,15 +1,17 @@
 <div class="col-10 offset-1 main">
 
-	<h1>Add a store to the database</h1>
-	<br />
+	<% if current_user && current_user.admin? %>
+		<h1>Add a store to the database</h1>
+		<br />
 
-	<div>
-		<%= simple_form_for @store do |f| %>
-			<%= f.input :storename %>
-			<%= f.input :address %>
-			<br />
-			<%= f.submit 'Create Store', class: 'btn btn-primary' %>
-		<% end %>
-	</div>
+		<div>
+			<%= simple_form_for @store do |f| %>
+				<%= f.input :storename %>
+				<%= f.input :address %>
+				<br />
+				<%= f.submit 'Create Store', class: 'btn btn-primary' %>
+			<% end %>
+		</div>
+	<% end %>
 
 </div>

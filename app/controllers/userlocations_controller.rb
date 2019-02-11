@@ -4,8 +4,13 @@ class UserlocationsController < ApplicationController
 	def create
 		@userlocation = current_user.userlocations.create(userlocation_params)
 		if @userlocation.valid?
-			redirect_to user_path(current_user), 
-			notice: 'Your location has been updated successfully.'
+			if current_user.userlocations.count > 1
+				redirect_to user_path(current_user), 
+				notice: 'Your location has been updated successfully.'
+			else
+				redirect_to stores_path, 
+				notice: 'Your location has been updated successfully. Have fun!'
+			end
 		else
 			redirect_to user_path(current_user), 
 			alert: 'Sorry, there was a problem setting your location. Please try again.'

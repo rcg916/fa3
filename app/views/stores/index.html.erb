@@ -10,7 +10,15 @@
 		<%= link_to store.storename, store_path(store) %><br />
 		<%= store.address %><br />
 		<%= store.distance_from(@user.userlocations.last.to_coordinates).floor(1) %> miles away<br />
-		<%= store.reviews.count %> reviews<br /><br />
+		<%= store.reviews.count %> reviews
+
+		<!-- average rating for each store -->
+		<% @totalrating = 0 %>
+		<% store.reviews.each do |review| %>
+			<% @totalrating += review.ratingavg %>
+		<% end %>
+		<em>(<%= (@totalrating / store.reviews.count).floor(2) %>)</em>
+
 	<% end %>
 
 </div>

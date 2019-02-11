@@ -1,5 +1,13 @@
-reviews<br />
+<div class="col-10 offset-1 main">
 
-<% @reviews.each do |review| %>
-	<%= review.title %><br />
-<% end %>
+	<% if current_user && current_user.admin? %>
+
+		<h2>reviews</h2>
+
+		<% @reviews.each do |review| %>
+			<%= review.title %><br />
+		<% end %>
+
+	<% end %>
+
+</div>

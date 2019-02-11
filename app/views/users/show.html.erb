@@ -15,11 +15,11 @@
 		<br />
 
 		High fives given: <%= @user.reviewhighfives.count %>
-		<br /> 
+		<br /><br />
 
 		<% @totalhighfivesreceived = 0 %>
 		<% @user.reviews.each do |review| %>
-			<% @totalhighfivesreceived += review.reviewhighfives.count %><br />
+			<% @totalhighfivesreceived += review.reviewhighfives.count %>
 		<% end %>
 
 		High fives received: <%= @totalhighfivesreceived %>
