@@ -20,34 +20,7 @@
 		<small><em>Locations for Delivery Services are approximate.</em></small><br />
 	<% end %>
 
-	<!-- Display map if coordinates are present -->
-
-		<% if @store.latitude.present? && @store.longitude.present? %>
-
-		  <script>
-		    function initMap() {
-		      var myLatLng = {lat: <%= @store.latitude %>, lng: <%= @store.longitude%>};
-		      var map = new google.maps.Map(document.getElementById('map'), {
-		        zoom: 13,
-		        center: myLatLng
-		      });
-		      var marker = new google.maps.Marker({
-		        position: myLatLng,
-		        map: map,
-		        title: '<%= @store.storename %>'
-		      });
-		    }
-		  </script>
-
-		  <script async defer
-		  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap">
-		  </script>
-
-		  <div id="map"></div>
-
-	  <% end %>
-
-	  <!-- END MAP -->
+	
 
 	<br /><br />
 
