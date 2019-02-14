@@ -44,12 +44,12 @@ class ReviewsController < ApplicationController
     @store = Store.find(params[:store_id])
 		@user = current_user
     @review = @store.reviews.create(review_params.merge(store_id: @store.id, user: @user))
-    ratingavg = ((@review.visualrating + @review.tasterating + @review.odorrating + @review.potencyrating + @review.happinessrating).to_f / 5).floor(2)
-    @review.update_attribute :ratingavg, ratingavg
-    straincapitalized = @review.strainname.titlecase
-    @review.update_attribute :strainname, straincapitalized 
     if @review.valid?
-    	redirect_to store_reviews_path, notice: 'Awesome! Your review was created successfully.'
+      ratingavg = ((@review.visualrating + @review.tasterating + @review.odorrating + @review.potencyrating + @review.happinessrating).to_f / 5).floor(2)
+      @review.update_attribute :ratingavg, ratingavg
+      straincapitalized = @review.strainname.titlecase
+      @review.update_attribute :strainname, straincapitalized 
+      redirect_to store_reviews_path, notice: 'Awesome! Your review was created successfully.'
   	else
   		redirect_to store_path(@store), alert: 'Sorry, there was a problem with your review. Please try again.'
   	end

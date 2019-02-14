@@ -21,8 +21,8 @@
 				</div>
 				<div class="col-3">
 					<div class="float-right">
-						<%= review.created_at.strftime("%A, %b %-d") %><br />
-						<%= review.created_at.strftime("%-I:%M %p") %><br /><br />
+						<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
+						<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %><br /><br />
 						<div>
   							Overall Score<br />
   							<h2><span class="badge badge-primary"> <%= review.ratingavg %> </span></h2>

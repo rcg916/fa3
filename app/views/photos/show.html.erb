@@ -2,11 +2,13 @@
 
 	<%= link_to 'Back', :back %><br /><br />
 
-	<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
-
 	<% if current_user && @review.user != current_user %>
 		<%= link_to photoupvote_text, photoupvotes_update_path(photo: @review.photos.last), id: 'photoupvote_link', remote: true %>
 	<% end %>
+	
+	<br /><br />
+
+	<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
 
 	<% if current_user && @review.user == current_user %>
 		<%= link_to 'Destroy', store_review_photo_path(@review.store, @review.photos.last, @review), method: :delete, data: {confirm: 'Are you sure you want to delete this photo? You cannot reverse this action.'} %>

@@ -1,6 +1,14 @@
 class Review < ApplicationRecord
-	validates :producttype, presence: true
 	validates :storetype, presence: true
+	validates :title, presence: true
+	validates :comment, presence: true
+	validates :strainname, presence: true
+	validates :straintype, presence: true
+	validates :visualrating, presence: true, inclusion: 1..10
+	validates :tasterating, presence: true, inclusion: 1..10
+	validates :odorrating, presence: true, inclusion: 1..10
+	validates :potencyrating, presence: true, inclusion: 1..10
+	validates :happinessrating, presence: true, inclusion: 1..10
 
 	belongs_to :store
 	belongs_to :user

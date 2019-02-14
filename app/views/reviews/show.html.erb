@@ -3,10 +3,6 @@
 	<% if @review.user == current_user && @review.photos.present? && @review.labelinfos.present? %>
 		<span class="badge badge-success">Nice job! Your review is 100% complete.</span>
 	<% end %>
-
-	<% if @review.user != current_user %>
-		<%= link_to reviewhighfive_text, reviewhighfives_update_path(review: @review), id: 'reviewhighfive_link', remote: true %>
-	<% end %>
 	<br />
 
 	<div>
@@ -17,7 +13,12 @@
 	</div>
 	<br />
 
-	<%= @review.reviewhighfives.count %>
+	<% if @review.user != current_user %>
+		<%= link_to reviewhighfive_text, reviewhighfives_update_path(review: @review), id: 'reviewhighfive_link', remote: true %>
+	<% end %>
+	<br />
+
+	High Fives received for this review: <%= @review.reviewhighfives.count %>
 
 	<br /><br />
 

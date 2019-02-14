@@ -63,11 +63,11 @@
 				<%= f.input :title, label: 'Enter a title for your review' %>
 				<%= f.input :straintype, as: :select, collection: Review::STRAINTYPE, label: 'What type of strain was it?' %>
 				<%= f.input :strainname, label: 'What was the strain called?' %>
-				<%= f.input :visualrating, label: 'How does it look?' %>
-				<%= f.input :tasterating, label: 'How does it taste?' %>
-				<%= f.input :odorrating, label: 'How does it smell?' %>
-				<%= f.input :potencyrating, label: 'How was the potency?' %>
-				<%= f.input :happinessrating, label: 'How happy are you with the purchase?' %>
+				<%= f.input :visualrating, as: :select, collection: 1..10, label: 'How does it look?' %>
+				<%= f.input :tasterating, as: :select, collection: 1..10, label: 'How does it taste?' %>
+				<%= f.input :odorrating, as: :select, collection: 1..10, label: 'How does it smell?' %>
+				<%= f.input :potencyrating, as: :select, collection: 1..10, label: 'How was the potency?' %>
+				<%= f.input :happinessrating, as: :select, collection: 1..10, label: 'How happy are you with the purchase?' %>
 				<div class="box">
 				<%= f.input :clarityrating, as: :range, label: 'Clear or Heavy?' %>
 				<small>Clear <span class="float-right">Heavy</span></small>
@@ -86,7 +86,7 @@
 				</div>
 				<%= f.input :comment, label: 'Tell us more about it.' %>
 				<br />
-				<%= f.submit 'Create Review', class: 'btn btn-primary', data: {confirm: 'Are you sure you want to create this review?'} %>
+				<%= f.submit 'Create Review', class: 'btn btn-primary' %>
 			<% end %>
 		</div>
 
