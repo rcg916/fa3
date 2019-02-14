@@ -1,6 +1,6 @@
 <div class="col-10 offset-1 main">
 
-	<h4>Reviews from stores near you:</h4>
+	<h3>Cannabis Reviews from dispensaries near you:</h3>
 	<br />
 
 	<% @sortednearbyreviews.each do |review| %>
@@ -22,9 +22,12 @@
 			<h2><span class="badge badge-primary"> <%= review.ratingavg %> </span></h2>
 		</div>
 		<div>
-			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
-			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %><br />
+			<h5><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
+			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %></h5>
 		</div>
+		<br /><br />
+
+		<p class="text-center"><em>Description goes here, taken from slider settings</em></p>
 		<% if review != @sortednearbyreviews.last %>
 			<br /><hr /><br />
 		<% end %>

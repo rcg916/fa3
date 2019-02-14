@@ -5,6 +5,7 @@
 	<h2><%= @store.storename %></h2>
 	<%= @store.address %><br /><br />
 
+	
 
 	Reviews from this dispensary: <%= @store.reviews.count %><br />
 
@@ -86,7 +87,7 @@
 				</div>
 				<%= f.input :comment, label: 'Tell us more about it.' %>
 				<br />
-				<%= f.submit 'Create Review', class: 'btn btn-primary' %>
+				<%= f.submit 'Create Review', class: 'btn btn-primary btn-lg btn-block' %>
 			<% end %>
 		</div>
 
