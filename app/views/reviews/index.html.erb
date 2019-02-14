@@ -1,36 +1,31 @@
 <div class="col-10 offset-1 main">
 
-	<h3>Reviews from stores near you</h3>
+	<h3>Reviews from stores near you:</h3>
 	<br />
 
 	<% @sortednearbyreviews.each do |review| %>
-		<div class="box">
-			<div class="row">
-				<div class="col-2">
-					<% if review.photos.present? %>
-						<%= image_tag((review.photos.last.picture.url), class: 'review_image_thumb float-right') %>
-					<% else %>
-						No image
-					<% end %>
-				</div>
-				<div class="col-7">
-					<h3><%= link_to review.title, store_review_path(store_id: review.store.id, id: review.id) %></h3><br />
-					A review by <%= link_to review.user.username, user_path(review.user) %><br />
-					<%# review.producttype %>
-					<%= review.strainname %> (<%= review.inv_straintype %>) purchased from <%= link_to review.store.storename, store_path(review.store) %> (<%= review.inv_storetype %>)<br />
-				</div>
-				<div class="col-3">
-					<div class="float-right">
-						<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
-						<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %><br /><br />
-						<div>
-  							Overall Score<br />
-  							<h2><span class="badge badge-primary"> <%= review.ratingavg %> </span></h2>
-						</div>
-					</div>
-				</div>
-			</div>
+		
+		<h4><%= link_to review.title, store_review_path(store_id: review.store.id, id: review.id) %></h4>
+
+		<p>A review by <%= link_to review.user.username, user_path(review.user) %></p>
+		<div>
+			<% if review.photos.present? %>
+				<%= image_tag((review.photos.last.picture.url), class: 'review_image') %><br />
+				<h5><%= review.photos.last.caption %></h5>
+			<% else %>
+				No image uploaded yet!
+			<% end %>
 		</div>
+		<br />
+		<div>
+			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
+			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %><br />
+
+			Overall Score<br />
+			<h2><span class="badge badge-primary"> <%= review.ratingavg %> </span></h2>			
+		</div>
+		<br /><hr /><br />
+			
 	<% end %>
 
 </div>

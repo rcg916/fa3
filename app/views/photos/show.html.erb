@@ -4,9 +4,8 @@
 
 	<% if current_user && @review.user != current_user %>
 		<%= link_to photoupvote_text, photoupvotes_update_path(photo: @review.photos.last), id: 'photoupvote_link', remote: true %>
+		<br /><br />
 	<% end %>
-	
-	<br /><br />
 
 	<%= image_tag((@review.photos.last.picture.url), class: 'review_image') %><br />
 

@@ -23,6 +23,8 @@ class StoresController < ApplicationController
 
   def create
   	@store = Store.create(store_params)
+    storecapitalized = @store.storename.titlecase
+    @store.update_attribute :storename, storecapitalized
 		if @store.valid?
 			redirect_to stores_path, notice: 'Store created successfully.'
 		else

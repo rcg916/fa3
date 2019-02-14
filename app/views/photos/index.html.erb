@@ -6,7 +6,7 @@
 
 	<div>
 		<% @photos.sort_by{ |t| [-t.photoupvotes.count, t.created_at] }.each do |photo| %>
-			<%= link_to image_tag((photo.picture.url), class: 'review_image_small'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
+			<%= link_to image_tag((photo.picture.url), class: 'review_image'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
 			<small><%= photo.caption %></small><br />
 			<%= link_to photo.review.title, store_review_path(store_id: photo.review.store.id, id: photo.review.id) %><br />
 			UpVotes: <%= photo.photoupvotes.count %><br /><br />
