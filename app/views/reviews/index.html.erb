@@ -18,14 +18,16 @@
 			<br />
 		</div>
 		<div class="float-right">
-			Overall Score<br />
+			<h5>Overall Score</h5>
 			<h2><span class="badge badge-primary"> <%= review.ratingavg %> </span></h2>
 		</div>
 		<div>
 			<h5><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
 			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %></h5>
+			<br />
+			<p><em><%= review.store.distance_from(current_user.userlocations.last.to_coordinates).floor(1) %> miles away</em></p>
 		</div>
-		<br /><br />
+		<br />
 
 		<p class="text-center"><em>Description goes here, taken from slider settings</em></p>
 		<% if review != @sortednearbyreviews.last %>

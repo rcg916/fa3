@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def reviewhighfive_text
-		return @reviewhighfive_exists ? "Remove High Five" : "High Five!"
+		return @reviewhighfive_exists ? "Remove High Five" : "High Five this review!"
 	end
 
 	helper_method :favoritestore_text

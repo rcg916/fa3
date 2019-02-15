@@ -1,52 +1,59 @@
 <div class= "col-10 offset-1 main">
 
-	<% if @review.user == current_user && @review.photos.present? && @review.labelinfos.present? %>
-		<span class="badge badge-success">Nice job! Your review is 100% complete.</span>
+	<% if @review.user != current_user %>
+		<%= link_to reviewhighfive_text, reviewhighfives_update_path(review: @review), class: 'btn btn-primary', id: 'reviewhighfive_link', remote: true %> &nbsp; 
 	<% end %>
-	<br />
+
+	High Fives: <%= @review.reviewhighfives.count %><br /><br />
+
+	<% if @review.user == current_user && @review.photos.present? && @review.labelinfos.present? %>
+		<span class="badge badge-success">Nice job! Your review is 100% complete.</span><br />
+	<% end %>
 
 	<div>
 		<% if @review.photos.present? %>
 			<%= link_to image_tag((@review.photos.last.picture.url), class: 'review_image'), store_review_photo_path(@review.photos.last, @review, @review.user) %><br />
-			<h5><%= @review.photos.last.caption %></h5>
+			<p>Pictured: <%= @review.photos.last.caption %></p>
 		<% end %>
 	</div>
+
+	<h4><%= @review.title %></h4>
+	<p><%= @review.user.username %> reviews <%= @review.strainname %> (<%= @review.straintype %>) from <%= @review.store.storename %> (<%= @review.storetype %>)</p>
+	
+	<div class="row">
+		<div class="col-6">
+			<p>Looks: <%= @review.visualrating %><br />
+			Taste: <%= @review.tasterating %><br />
+			Smell: <%= @review.odorrating %><br />
+			Potency: <%= @review.potencyrating %><br />
+			How Happy? <%= @review.happinessrating %></p>
+		</div>
+		<div class="col-6>">
+			<p>Clarity: <%= @review.clarityrating %><br />
+			Quickness: <%= @review.quicknessrating %><br />
+			Head or Body? <%= @review.headbodyrating %><br />
+			Day or Night? <%= @review.daynightrating %></p>
+		</div>
+	</div>
+
+	<h5>Overall Rating: <%= @review.ratingavg %></h5>
 	<br />
 
-	<% if @review.user != current_user %>
-		<%= link_to reviewhighfive_text, reviewhighfives_update_path(review: @review), id: 'reviewhighfive_link', remote: true %>
-	<% end %>
+	<h5>Thoughts:</h5>
+	<p><%= @review.comment %></p>
 	<br />
-
-	High Fives received for this review: <%= @review.reviewhighfives.count %>
-
-	<br /><br />
-
-	<%= @review.storetype %><br />
-	<%= @review.producttype %><br />
-	<%= @review.title %><br />
-	<%= @review.visualrating %><br />
-	<%= @review.tasterating %><br />
-	<%= @review.odorrating %><br />
-	<%= @review.potencyrating %><br />
-	<%= @review.happinessrating %><br />
-	<%= @review.clarityrating %><br />
-	<%= @review.quicknessrating %><br />
-	<%= @review.headbodyrating %><br />
-	<%= @review.daynightrating %><br />
-	<%= @review.comment %><br />
-	<%= @review.store.storename %><br />
-	<%= @review.user.username %><br /><br />
 
 	<% if @review.labelinfos.present? %>
 		<div class="box">
-			<%= @review.labelinfos.last.harvestdate %><br />
-			<%= @review.labelinfos.last.thcperc %><br />
-			<%= @review.labelinfos.last.cbdperc %><br />
+			<h5>Info from product label:</h5>
+			Harvest Date: <%= @review.labelinfos.last.harvestdate %><br />
+			THC: <%= @review.labelinfos.last.thcperc %>%<br />
+			CBD: <%= @review.labelinfos.last.cbdperc %>%<br />
 		</div>
+	<% else %>
+		<em>Enter label info for this review! Readers love to know the specifics of the strain, like THC% and harvest dates.</em><br />
 	<% end %>
-
-	<br /><br />
+	<br />
 
 	<!-- Show Add Photo and Add Label buttons if current user wrote review -->
 	<% if current_user && current_user == @review.user %>
@@ -76,9 +83,9 @@
 		<% end %>
 		<!-- -->
 
-		<br /><br />
-
 	</div>
+
+	<br /><br />
 
 </div>
 

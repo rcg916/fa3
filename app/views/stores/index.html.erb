@@ -7,11 +7,13 @@
 		<% if store.reviews.present? %>
 			<span class="badge badge-success"><%= store.reviews.last.inv_storetype %></span><br />
 		<% end %>
-		<%= link_to store.storename, store_path(store) %><br />
-		<%= store.address %><br />
-		<%= store.city %><br />
-		<%= store.state %><br />
-		<%= store.zipcode %><br />
+		<h5><%= link_to store.storename, store_path(store) %></h5>
+		<% if store.reviews.present? && store.reviews.last.storetype == 'store' %>
+			<%= store.address.split(', ')[0] %>, <%= store.city %>, <%= store.state %> <%= store.zipcode %><br />
+		<% elsif store.reviews.present? && store.reviews.last.storetype == 'delivery' %>
+			Delivers in: <%= store.city %>, <%= store.state %> (<%= store.zipcode %>)<br />
+		<% end %>
+
 		<%= store.distance_from(@user.userlocations.last.to_coordinates).floor(1) %> miles away<br />
 		<%= store.reviews.count %> reviews
 

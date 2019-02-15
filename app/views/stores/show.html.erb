@@ -2,31 +2,56 @@
 
 	<%= link_to favoritestore_text, favoritestores_update_path(store: @store), id: 'favoritestore_link', remote: true, class: 'btn btn-primary' %> &nbsp; Favorited: <%= @store.favoritestores.count %><br /><br />
 
-	<h2><%= @store.storename %></h2>
-	<%= @store.address %><br /><br />
-
-	
-
-	Reviews from this dispensary: <%= @store.reviews.count %><br />
-
-	<%# .limit(5) between order and each once there are more reviews per store %>
-	<% @store.reviews.order("created_at DESC").each do |review| %>
-		<%= link_to review.title, store_review_path(@store, review) %><br />
+	<% if @store.reviews.present? %>
+		<span class="badge badge-success"><%= @store.reviews.last.inv_storetype %></span><br />
 	<% end %>
 
-	<br /><br />
-
+	<h3><%= @store.storename %></h3>
 	<% if @store.reviews.present? && @store.reviews.last.storetype == 'delivery' %>
-		<small><em>Locations for Delivery Services are approximate.</em></small><br />
+		<p><%= @store.city %>, <%= @store.state %> (<%= @store.zipcode %>)</p>
+	<% else %>
+		<p><%= @store.address.split(', ')[0] %>, <%= @store.city %>, <%= @store.state %> <%= @store.zipcode %></p>
 	<% end %>
 
-	
+	<p>Reviews from this dispensary: <%= @store.reviews.count %></p>
 
-	<br /><br />
+	<p>Average review: 
 
-	<div class="box">
+	<!-- average rating for each store -->
+	<% if @store.reviews.present? %>
+		<% @totalrating = 0 %>
+		<% @store.reviews.each do |review| %>
+			<% @totalrating += review.ratingavg %>
+		<% end %>
+		<%= (@totalrating / @store.reviews.count).floor(2) %><br />
+	<% else %>
+		N/A
+	<% end %>
 
-		<h3>Add a review for a strain from <%= @store.storename %></h3>
+	</p>
+
+	<h5>Recent reviews:</h5>
+
+	<% if @store.reviews.present? %>
+		<%# .limit(5) between order and each once there are more reviews per store %>
+		<% @store.reviews.order("created_at DESC").each do |review| %>
+			<%= link_to review.title, store_review_path(@store, review) %><br />
+		<% end %>
+	<% else %>
+		<em>No reviews yet - be the first to write one!</em><br />
+	<% end %>
+
+	<br />
+
+	<p>
+		<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+	    	Write a review
+	  	</a>
+  	</p>
+
+  	<div class="collapse" id="collapseExample">
+	  <div class="card card-body">
+	  	<h3>Add a review for a strain from <%= @store.storename %></h3>
 		<br />
 
 		<div>
@@ -63,7 +88,7 @@
 				<%= f.submit 'Create Review', class: 'btn btn-primary btn-lg btn-block' %>
 			<% end %>
 		</div>
-
+	  </div>
 	</div>
 
 </div>
