@@ -15,12 +15,24 @@
 		<% end %>
 
 		<br />
+
+		<!-- BADGES -->
 		
 		<div class="box">
 			<h5>Badges</h5>
 			<br />
-			stuff
+
+			<!-- Contributor Badge -->
+			<% if @user.reviews.present? %>
+				Contributor Badge!
+			<% else %>
+				Not yet.
+			<% end %>
+			<!-- -->
+
 		</div>
+
+		<!-- END BADGES -->
 
 		<br />
 

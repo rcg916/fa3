@@ -1,9 +1,12 @@
 <div class="col-10 offset-1 main">
 
-	<h3>Cannabis Reviews from dispensaries near you:</h3>
+	<h3>Cannabis reviews from dispensaries near you:</h3>
 	<br />
 
 	<% @sortednearbyreviews.each do |review| %>
+		<div class="float-right">
+			<h1><span class="badge badge-primary"> <%= review.ratingavg %> </span></h1>
+		</div>
 		
 		<h4><%= link_to review.title, store_review_path(store_id: review.store.id, id: review.id) %></h4>
 
@@ -17,13 +20,10 @@
 			<% end %>
 			<br />
 		</div>
-		<div class="float-right">
-			<h5>Overall Score</h5>
-			<h2><span class="badge badge-primary"> <%= review.ratingavg %> </span></h2>
-		</div>
+		
 		<div>
-			<h5><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
-			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %></h5>
+			<p><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%A, %b %-d") %><br />
+			<%= review.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%-I:%M %p") %></p>
 			<br />
 			<p><em><%= review.store.distance_from(current_user.userlocations.last.to_coordinates).floor(1) %> miles away</em></p>
 		</div>
