@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-	before_action :authenticate_user!, except: [:home, :faq]
+	before_action :authenticate_user!, except: [:home, :faq, :show]
 
   def index
   	@user = current_user
@@ -35,6 +35,8 @@ class ReviewsController < ApplicationController
   end
 
   def home
+    @latestreviews = Review.order('created_at DESC').limit(3)
+    @latestphotos = Photo.order('created_at DESC').limit(3)
   end
 
   def faq

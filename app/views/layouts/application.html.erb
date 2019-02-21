@@ -13,13 +13,13 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-transparent">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <img src="https://firea3.s3.amazonaws.com/uploads/photo/picture/31/testbarimage.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+      <%= link_to '@firealarm', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <%= link_to '@firealarm', root_path, class: 'navbar-brand' %>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item linkspacer">
             <%= link_to 'Local Reviews', reviews_path, class: 'navbar-link' %>
@@ -60,6 +60,11 @@
     <% end %>
 
     <%= yield %>
+
+    <!-- FOOTER -->
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+      <a class="navbar-brand" href="#">Fixed bottom</a>
+    </nav>
 
   </body>
 </html>

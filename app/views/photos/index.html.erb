@@ -1,3 +1,7 @@
+<% unless current_user %>
+  <p class="alert alert-info">To start UpVoting pictures and writing your own reviews, <%= link_to 'Sign in', new_user_session_path %> or <%= link_to 'Sign up', new_user_registration_path %>!</p>
+<% end %>
+
 <div class="col-10 offset-1 main">
 
 	<h3>Pic Stream</h3>

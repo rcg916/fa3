@@ -9,4 +9,23 @@
 
 	<p><%= link_to 'How does this work?', faq_path %></p>
 
+	<h5>Latest Reviews</h5>
+	<% @latestreviews.each do |review| %>
+		<%= link_to review.title, store_review_path(review.store, review) %>&nbsp;
+		<% if review.photos.present? %>
+			(photo icon)
+		<% end %>
+		<% if review.labelinfos.present? %>
+			&nbsp;(label icon)
+		<% end %>
+		<br />
+	<% end %>
+
+	<br />
+
+	<h5>Latest Pics</h5>
+	<% @latestphotos.each do |photo| %>
+		<%= photo.picture.url %><br />
+	<% end %>
+
 </div>

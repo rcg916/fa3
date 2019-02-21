@@ -10,7 +10,7 @@
 			<em><%= @user.email %></em><br />
 		<% end %>
 
-		<% if current_user && current_user.admin? %>
+		<% if @user.admin? %>
 			<span class="badge badge-secondary">ADMIN</span><br />
 		<% end %>
 
