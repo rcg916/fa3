@@ -29,14 +29,33 @@
 		</div>
 		<br />
 
-		<p class="text-center"><em>Description goes here, taken from slider settings</em></p>
+		<!-- generating description from sliders -->
+
+		<% if review.visualrating > 2 %>
+			<% @straindescription = "looks good" %>
+		<% end %>
+		<% if review.odorrating > 2 %>
+			<% @straindescription += ", smells good" %>
+		<% end %>
+		<% if review.tasterating > 2 %>
+			<% @straindescription += ", tastes good" %>
+		<% end %>
+		<% if review.potencyrating > 2 %>
+			<% @straindescription += ", it's stony" %>
+		<% end %>
+		<% if review.tasterating > 2 %>
+			<% @straindescription += ". I'm happy!" %>
+		<% end %>
+
+		<p class="text-center"><em><%= @straindescription %></em></p>
+
+		<!-- END description gen -->
+
 		<% if review != @sortednearbyreviews.last %>
 			<br /><hr /><br />
 		<% end %>
 			
 	<% end %>
-
-	<br /><br /> <!-- TEMP -->
 
 </div>
 

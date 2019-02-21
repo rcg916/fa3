@@ -10,9 +10,15 @@
 
 	<div>
 		<% @photos.sort_by{ |t| [-t.photoupvotes.count, t.created_at] }.each do |photo| %>
-			<h5 class="float-right"><%= link_to 'Check it out!', store_review_photo_path(photo, photo.review, photo.review.user) %></h5>
+			<% if current_user %>
+				<h5 class="float-right"><%= link_to 'Check it out!', store_review_photo_path(photo, photo.review, photo.review.user) %></h5>
+			<% end %>
 			<h5>UpVotes: <%= photo.photoupvotes.count %></h5>
-			<%= link_to image_tag((photo.picture.url), class: 'review_image'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
+			<% if current_user %>
+				<%= link_to image_tag((photo.picture.url), class: 'review_image'), store_review_photo_path(photo, photo.review, photo.review.user) %><br />
+			<% else %>
+				<%= image_tag((photo.picture.url), class: 'review_image') %><br />
+			<% end %>
 			<small><%= photo.caption %></small><br /><br />
 		<% end %>
 

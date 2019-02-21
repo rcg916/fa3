@@ -9,7 +9,7 @@ class UserlocationsController < ApplicationController
 				notice: 'Your location has been updated successfully.'
 			else
 				redirect_to stores_path, 
-				notice: 'Your location has been updated successfully. Have fun!'
+				notice: 'Your location has been updated successfully. If you need a hand with anything, visit our <%= link_to "FAQ", reviews_faq_path %>'
 			end
 		else
 			redirect_to user_path(current_user), 

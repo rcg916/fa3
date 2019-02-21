@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   def index
   	@user = current_user
     if @user.userlocations.last == nil
-      redirect_to user_path(@user), alert: 'Please set your location so we can show you reviews nearby.'
+      redirect_to user_path(@user), alert: 'Please set your location so we can show you reviews nearby. If you prefer, you can use your zip code.'
     else
       @nearbystores = Store.near(@user.userlocations.last.to_coordinates, 25, units: :mi)
       @nearbyreviews = []

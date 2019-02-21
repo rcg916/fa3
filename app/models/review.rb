@@ -46,4 +46,5 @@ class Review < ApplicationRecord
 	def inv_straintype
 		STRAINTYPE.invert[self.straintype]
 	end
+
 end
