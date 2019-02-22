@@ -28,29 +28,10 @@
 			<p><em><%= review.store.distance_from(current_user.userlocations.last.to_coordinates).floor(1) %> miles away</em></p>
 		</div>
 		<br />
+		
+		<p class="text-center"><em><%= review.reviewdesc %></em></p>
 
-		<!-- generating description from sliders -->
-
-		<% if review.visualrating > 2 %>
-			<% @straindescription = "looks good" %>
-		<% end %>
-		<% if review.odorrating > 2 %>
-			<% @straindescription += ", smells good" %>
-		<% end %>
-		<% if review.tasterating > 2 %>
-			<% @straindescription += ", tastes good" %>
-		<% end %>
-		<% if review.potencyrating > 2 %>
-			<% @straindescription += ", it's stony" %>
-		<% end %>
-		<% if review.tasterating > 2 %>
-			<% @straindescription += ". I'm happy!" %>
-		<% end %>
-
-		<p class="text-center"><em><%= @straindescription %></em></p>
-
-		<!-- END description gen -->
-
+		<!-- add hr tag if it's not the last review -->
 		<% if review != @sortednearbyreviews.last %>
 			<br /><hr /><br />
 		<% end %>

@@ -51,7 +51,7 @@ class ReviewsController < ApplicationController
       @review.update_attribute :ratingavg, ratingavg
       straincapitalized = @review.strainname.titlecase
       @review.update_attribute :strainname, straincapitalized 
-      redirect_to store_reviews_path, notice: 'Awesome! Your review was created successfully.'
+      redirect_to store_review_path(@review.store, @review), notice: 'Awesome! Your review was created successfully. Now it\'s time to add a picture and label info!'
   	else
   		redirect_to store_path(@store), alert: 'Sorry, there was a problem with your review. Please try again.'
   	end
@@ -62,6 +62,6 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:producttype, :storetype, :title, :comment, :odorrating, 
       :visualrating, :tasterating, :potencyrating, :straintype, :strainname, :happinessrating, 
-      :clarityrating, :quicknessrating, :headbodyrating, :daynightrating)
+      :clarityrating, :quicknessrating, :headbodyrating, :daynightrating, :reviewdesc)
   end
 end

@@ -45,7 +45,38 @@
 
 	<h5>Thoughts:</h5>
 	<p><%= @review.comment %></p>
-	<br />
+
+	
+	<!-- generating description from sliders on first page load -->
+
+		<% if @review.reviewdesc == nil %>
+
+			<% if @review.visualrating <= 2 %>
+				<% @straindescription = "Crappy looking" %>
+			<% elsif @review.visualrating > 2 %>
+				<% @straindescription = "Looks decent" %>
+			<% end %>
+			<% if @review.odorrating > 2 %>
+				<% @straindescription += ", smells good" %>
+			<% end %>
+			<% if @review.tasterating > 2 %>
+				<% @straindescription += ", tastes good" %>
+			<% end %>
+			<% if @review.potencyrating > 2 %>
+				<% @straindescription += ", it's stony" %>
+			<% end %>
+			<% if @review.tasterating > 2 %>
+				<% @straindescription += ". I'm happy!" %>
+			<% end %>
+
+			<% @review.update_attribute :reviewdesc, @straindescription %>
+
+		<% end %>
+
+		<p><em><%= @review.reviewdesc %></em></p>
+
+		<!-- END description gen -->
+
 
 	<% if @review.labelinfos.present? %>
 		<div class="box">
